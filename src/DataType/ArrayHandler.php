@@ -12,7 +12,7 @@ class ArrayHandler implements HandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function getDataType() : string
+    public function getDataType()
     {
         return 'array';
     }
@@ -20,7 +20,7 @@ class ArrayHandler implements HandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function canHandleValue($value) : bool
+    public function canHandleValue($value)
     {
         return is_array($value);
     }
@@ -28,7 +28,7 @@ class ArrayHandler implements HandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function serializeValue($value) : string
+    public function serializeValue($value)
     {
         return json_encode($value);
     }
@@ -36,7 +36,7 @@ class ArrayHandler implements HandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function unserializeValue(string $value)
+    public function unserializeValue($value)
     {
         return json_decode($value, true);
     }

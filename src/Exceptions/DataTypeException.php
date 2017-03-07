@@ -11,7 +11,7 @@ use Exception;
  */
 class DataTypeException extends Exception
 {
-    public static function handlerNotFound(string $type)
+    public static function handlerNotFound($type)
     {
         return new static("Meta handler not found for type identifier '{$type}'");
     }

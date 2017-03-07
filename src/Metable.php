@@ -32,7 +32,7 @@ trait Metable
      *
      * @return MorphMany
      */
-    public function meta() : MorphMany
+    public function meta()
     {
         return $this->morphMany($this->getMetaClassName(), 'metable');
     }
@@ -43,7 +43,7 @@ trait Metable
      * @param string $key
      * @param mixed  $value
      */
-    public function setMeta(string $key, $value)
+    public function setMeta($key, $value)
     {
         $key = strtolower($key);
 
@@ -93,7 +93,7 @@ trait Metable
      *
      * @return mixed
      */
-    public function getMeta(string $key, $default = null)
+    public function getMeta($key, $default = null)
     {
         if ($this->hasMeta($key)) {
             return $this->getMetaRecord($key)->getAttribute('value');
@@ -121,7 +121,7 @@ trait Metable
      *
      * @return bool
      */
-    public function hasMeta(string $key) : bool
+    public function hasMeta($key)
     {
         return $this->getMetaCollection()->has($key);
     }
@@ -133,7 +133,7 @@ trait Metable
      *
      * @return void
      */
-    public function removeMeta(string $key)
+    public function removeMeta($key)
     {
         $this->getMetaCollection()->pull($key)->delete();
     }
@@ -156,7 +156,7 @@ trait Metable
      *
      * @return Meta|null
      */
-    public function getMetaRecord(string $key)
+    public function getMetaRecord($key)
     {
         return $this->getMetaCollection()->get($key);
     }
@@ -207,7 +207,7 @@ trait Metable
      *
      * @return void
      */
-    public function scopeWhereMeta(Builder $q, string $key, $operator, $value = null)
+    public function scopeWhereMeta(Builder $q, $key, $operator, $value = null)
     {
         // Shift arguments if no operator is present.
         if (!isset($value)) {
@@ -238,7 +238,7 @@ trait Metable
      *
      * @return void
      */
-    public function scopeWhereMetaNumeric(Builder $q, string $key, string $operator, $value)
+    public function scopeWhereMetaNumeric(Builder $q, $key, $operator, $value)
     {
         // Since we are manually interpolating into the query,
         // escape the operator to protect against injection.
@@ -260,7 +260,7 @@ trait Metable
      *
      * @return void
      */
-    public function scopeWhereMetaIn(Builder $q, string $key, array $values)
+    public function scopeWhereMetaIn(Builder $q, $key, array $values)
     {
         $values = array_map(function ($val) {
             return is_string($val) ? $val : $this->makeMeta($key, $val)->getRawValue();
@@ -282,7 +282,7 @@ trait Metable
      *
      * @return void
      */
-    public function scopeOrderByMeta(Builder $q, string $key, string $direction = 'asc', $strict = false)
+    public function scopeOrderByMeta(Builder $q, $key, $direction = 'asc', $strict = false)
     {
         $table = $this->joinMetaTable($q, $key, $strict ? 'inner' : 'left');
         $q->orderBy("{$table}.value", $direction);
@@ -298,7 +298,7 @@ trait Metable
      *
      * @return void
      */
-    public function scopeOrderByMetaNumeric(Builder $q, string $key, string $direction = 'asc', $strict = false)
+    public function scopeOrderByMetaNumeric(Builder $q, $key, $direction = 'asc', $strict = false)
     {
         $table = $this->joinMetaTable($q, $key, $strict ? 'inner' : 'left');
         $direction = strtolower($direction) == 'asc' ? 'asc' : 'desc';
@@ -316,7 +316,7 @@ trait Metable
      *
      * @return void
      */
-    private function joinMetaTable(Builder $q, string $key, $type = 'left')
+    private function joinMetaTable(Builder $q, $key, $type = 'left')
     {
         $relation = $this->meta();
         $metaTable = $relation->getRelated()->getTable();
@@ -397,7 +397,7 @@ trait Metable
      *
      * @return Meta
      */
-    protected function makeMeta(string $key = '', $value = '') : Meta
+    protected function makeMeta($key = '', $value = '')
     {
         $className = $this->getMetaClassName();
 

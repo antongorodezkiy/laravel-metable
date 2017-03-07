@@ -14,7 +14,7 @@ interface HandlerInterface
      *
      * @return string
      */
-    public function getDataType() : string;
+    public function getDataType();
 
     /**
      * Determine if the value is of the correct type for this handler.
@@ -23,7 +23,7 @@ interface HandlerInterface
      *
      * @return bool
      */
-    public function canHandleValue($value) : bool;
+    public function canHandleValue($value);
 
     /**
      * Convert the value to a string, so that it can be stored in the database.
@@ -32,7 +32,7 @@ interface HandlerInterface
      *
      * @return string
      */
-    public function serializeValue($value) : string;
+    public function serializeValue($value);
 
     /**
      * Convert a serialized string back to its original value.
@@ -41,5 +41,5 @@ interface HandlerInterface
      *
      * @return mixed
      */
-    public function unserializeValue(string $serializedValue);
+    public function unserializeValue($serializedValue);
 }

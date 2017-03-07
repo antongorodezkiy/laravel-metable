@@ -48,7 +48,7 @@ class Meta extends Model
      *
      * @return MorphTo
      */
-    public function metable() : MorphTo
+    public function metable()
     {
         return $this->morphTo();
     }
@@ -96,7 +96,7 @@ class Meta extends Model
      *
      * @return string
      */
-    public function getRawValue() : string
+    public function getRawValue()
     {
         return $this->attributes['value'];
     }
@@ -106,7 +106,7 @@ class Meta extends Model
      *
      * @return Registry
      */
-    protected function getDataTypeRegistry() : Registry
+    protected function getDataTypeRegistry()
     {
         return app('metable.datatype.registry');
     }

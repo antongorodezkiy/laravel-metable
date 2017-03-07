@@ -14,7 +14,7 @@ class ModelCollectionHandler implements HandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function getDataType() : string
+    public function getDataType()
     {
         return 'collection';
     }
@@ -22,7 +22,7 @@ class ModelCollectionHandler implements HandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function canHandleValue($value) : bool
+    public function canHandleValue($value)
     {
         return $value instanceof Collection;
     }
@@ -30,7 +30,7 @@ class ModelCollectionHandler implements HandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function serializeValue($value) : string
+    public function serializeValue($value)
     {
         $items = [];
         foreach ($value as $key => $model) {
@@ -46,7 +46,7 @@ class ModelCollectionHandler implements HandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function unserializeValue(string $value)
+    public function unserializeValue($value)
     {
         $data = json_decode($value, true);
 

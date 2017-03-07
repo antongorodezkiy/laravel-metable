@@ -40,7 +40,7 @@ class Registry
      *
      * @return HandlerInterface
      */
-    public function getHandlerForType(string $type) : HandlerInterface
+    public function getHandlerForType($type)
     {
         if ($this->hasHandlerForType($type)) {
             return $this->handlers[$type];
@@ -55,7 +55,7 @@ class Registry
      *
      * @return bool
      */
-    public function hasHandlerForType(string $type) : bool
+    public function hasHandlerForType($type)
     {
         return array_key_exists($type, $this->handlers);
     }
@@ -67,7 +67,7 @@ class Registry
      *
      * @return void
      */
-    public function removeHandlerForType(string $type)
+    public function removeHandlerForType($type)
     {
         unset($this->handlers[$type]);
     }
@@ -81,7 +81,7 @@ class Registry
      *
      * @return string
      */
-    public function getTypeForValue($value) : string
+    public function getTypeForValue($value)
     {
         foreach ($this->handlers as $type => $handler) {
             if ($handler->canHandleValue($value)) {

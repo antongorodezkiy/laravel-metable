@@ -12,7 +12,7 @@ class ObjectHandler implements HandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function getDataType() : string
+    public function getDataType()
     {
         return 'object';
     }
@@ -20,7 +20,7 @@ class ObjectHandler implements HandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function canHandleValue($value) : bool
+    public function canHandleValue($value)
     {
         return is_object($value);
     }
@@ -28,7 +28,7 @@ class ObjectHandler implements HandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function serializeValue($value) : string
+    public function serializeValue($value)
     {
         return json_encode($value);
     }
@@ -36,7 +36,7 @@ class ObjectHandler implements HandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function unserializeValue(string $value)
+    public function unserializeValue($value)
     {
         return json_decode($value, false);
     }
